@@ -19,6 +19,7 @@ def to_list(line):
     parameter_list = line.split()
     return parameter_list
 
+
 def type_conversion(string):
     """Converts the given string to str, int or float
 
@@ -32,7 +33,9 @@ def type_conversion(string):
     if string.startswith('\"') and string.endswith('\"'):
         string = string.strip('\"')
         if '\"' in string:
-            string = string.replace('\"', '\\\"')            
+            string = string.replace('\"', '\\\"')
+        if '_' in string:
+            string = string.replace('_', ' ')
     elif string.isdigit():
         string = int(string)
     elif '.' in string:
@@ -41,6 +44,7 @@ def type_conversion(string):
         return None
 
     return string
+
 
 def to_dict(parameter_list):
     """Takes a list and converts it to a dict
@@ -51,7 +55,7 @@ def to_dict(parameter_list):
 
     Return:
         A dictionary containing key value pairs if parameter_list is not an
-        empty list, otherwise returns an empty dictionary       
+        empty list, otherwise returns an empty dictionary
     """
     dictionary = {}
 
@@ -63,6 +67,7 @@ def to_dict(parameter_list):
                 dictionary[args[0]] = args[1]
 
     return dictionary
+
 
 def set_attr(obj, parameter_list):
     dictionary = to_dict(parameter_list)
